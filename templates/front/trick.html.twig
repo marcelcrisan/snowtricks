@@ -2,7 +2,22 @@
 
 {% block main %}
 
-    {{ controller_name }}
+    <trick>
+        <h2>{{ trick.title }}</h2>
+        <div class="metadata">Ecrit le {{ trick.createdAt | date('d/m/Y') }} à {{ trick.createdAt | date('H:i') }} dans la catégorie <!-- category fait dinamique --></div>
+        <div class="content">
+            <img src="" alt="">
+            <video  controls>
+                <source src="" type="video/mp4">
+                <source src="" type="video/ogg">
+                Your browser does not support HTML5 video.
+            </video>
+            <p>
+                {{ trick.content }}
+            </p>
+            <a href="{{ path ('trick_edit', {'id': trick.id}) }}" class="btn btn-primary">Modifier la figure</a>
+        </div>
+    </trick>
 
 
 {% endblock %}
