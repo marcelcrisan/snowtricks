@@ -4,7 +4,7 @@
 
     <trick>
         <h2>{{ trick.title }}</h2>
-        <div class="metadata">Ecrit le {{ trick.createdAt | date('d/m/Y') }} à {{ trick.createdAt | date('H:i') }} dans la catégorie <!-- category fait dinamique --></div>
+        <div class="metadata">Crée le {{ trick.createdAt | date('d/m/Y') }} à {{ trick.createdAt | date('H:i') }} | Modifié le {{ trick.editAt | date('d/m/Y') }} à {{ trick.editAt | date('H:i') }} dans la catégorie <!-- category fait dinamique --></div>
         <div class="content">
             <img src="" alt="">
             <video  controls>
@@ -16,8 +16,26 @@
                 {{ trick.content }}
             </p>
             <a href="{{ path ('trick_edit', {'id': trick.id}) }}" class="btn btn-primary">Modifier la figure</a>
+            <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-primary" onclick="delete_trick(event, trick.id);">Supprimer la figure</a>
         </div>
     </trick>
 
+
+{% endblock %}
+
+{% block customjavascript %}
+{{ parent() }}
+  <script>
+      function delete_trick(e,trick_id)
+      {
+          e.preventDefault();
+          if(confirm('Vous êtes sûr(e) ?')) 
+          {
+              //console.log(id);
+              // delete trick
+              window.location.href = "/";
+          }
+      }
+  </script>
 
 {% endblock %}
