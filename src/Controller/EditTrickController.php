@@ -14,7 +14,7 @@ class EditTrickController extends AbstractController
     /**
      * @Route("/trick/{id}/edit", name="trick_edit")
      */
-    public function edit(Trick $trick,Request $request, ObjectManager $manager)
+    public function editTrick(Trick $trick,Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(TrickType::class, $trick);
 

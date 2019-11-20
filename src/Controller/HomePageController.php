@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends AbstractController
+class HomePageController extends AbstractController
 {
     /**
      * @Route@Route("/", name="home_page")
@@ -13,7 +13,7 @@ class DefaultController extends AbstractController
 
     public function home()
     {
-        return $this->render('front/front.html.twig', [
+        return $this->render('front/home.html.twig', [
             'title' => 'Bienvenue !',
         ]);
     } 
