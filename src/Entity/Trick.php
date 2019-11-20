@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,16 +29,6 @@ class Trick
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $video;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -47,16 +39,31 @@ class Trick
     private $editAt;
 
     /**
-     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\GroupTrick", inversedBy="tricks", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
-   // private $category;
+    private $groupTrick;
 
     /**
-     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="trick", orphanRemoval=true, cascade={"persist"})
      */
-   // private $comments;
+    private $images;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="trick", orphanRemoval=true, cascade={"persist"})
+     */
+    private $videos;
 
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     public function getId(): ?int
     {
@@ -87,30 +94,6 @@ class Trick
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getVideo(): ?string
-    {
-        return $this->video;
-    }
-
-    public function setVideo(string $video): self
-    {
-        $this->image = $video;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -131,6 +114,80 @@ class Trick
     public function setEditAt(\DateTimeInterface $editAt): self
     {
         $this->editAt = $editAt;
+
+        return $this;
+    }
+
+    public function getGroupTrick(): ?GroupTrick
+    {
+        return $this->groupTrick;
+    }
+
+    public function setGroupTrick(?GroupTrick $groupTrick): self
+    {
+        $this->groupTrick = $groupTrick;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getTrick() === $this) {
+                $image->setTrick(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getTrick() === $this) {
+                $video->setTrick(null);
+            }
+        }
 
         return $this;
     }

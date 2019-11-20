@@ -3,9 +3,16 @@
 namespace App\Form;
 
 use App\Entity\Trick;
+use App\Entity\GroupTrick;
+use App\Form\ImageType;
+use App\Form\VideoType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\CallbackTransformer;
 
 class TrickType extends AbstractType
 {
@@ -14,10 +21,42 @@ class TrickType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('image')
-            ->add('video')
-            //->add('category')
+            ->add('groupTrick', EntityType::class, [
+                'class' => GroupTrick::class,
+                'choice_label' => 'title'
+                
+            ]) 
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'mapped' => false,
+                'by_reference' => false,
+                'allow_delete' => true,
+               /*  'compound' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5024k',
+                        'accept' => 'image/*',
+                        'mimeTypes' => [
+                            'application/jpg',
+                            'application/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid  document', 
+                    ])
+                ], */
+            ])
+            ->add('videos', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'mapped' => false,
+                'by_reference' => false,
+                'allow_delete' => true,
+            ])
+
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
