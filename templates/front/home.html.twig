@@ -5,6 +5,7 @@
             {% if loop.first %}
                 {% for imageF in trickF.images %}
                     {% if loop.first %}
+                        <a href="{{ path ('show_trick', {'id': trickF.id}) }}">
                         <header class="bg-primary" style="background-image:url('{{ asset('assets/images/') ~ imageF.name }}')">
                     {% endif %}
                 {% endfor %}
@@ -30,6 +31,7 @@
                     </div>
                 </div>
             </header>
+            </a>
         {% endblock %}
     
 {% block main %}
@@ -39,7 +41,8 @@
             {% for trick in tricks|slice(1) %}
                 {% for image in trick.images %}
                     {% if loop.first %}
-                        <div class="grid-item" style="background-image:url('{{ asset('assets/images/') ~ image.name }}')">
+                        <a href="{{ path ('show_trick', {'id': trick.id}) }}">
+                            <div class="grid-item" style="background-image:url('{{ asset('assets/images/') ~ image.name }}')">
                     {% endif %}
                 {% endfor %}
                             {% if app.user %}
@@ -49,10 +52,10 @@
                                 </div>
                                      
                             {% endif %}
-                            <h2>{{ trick.title }}</h2>
+                                <h2>{{ trick.title }}</h2>
                         
-                        </div>
-                    
+                            </div>
+                        </a>
             {% endfor %}
         </div>
     </div
