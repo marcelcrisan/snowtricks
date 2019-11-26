@@ -3,7 +3,10 @@ body{
     margin: 0;
     padding: 0;
 }
-
+body .btn:hover{
+    background-color: #fff;
+    color: #2f414a;
+}
 /* Header */
 body header{
     width: 100%;
@@ -23,8 +26,36 @@ body header .row{
 body header div h1{
     background: #2f414ab0;
 }
+body header div h1:hover{
+    background: #fff;
+}
+body header div a{
+    color: inherit;
+}
+body header div a:hover{
+    color: #2f414a;
+    text-decoration: none;
+}
 body header div .btn{
     background-color: #2f414a;
+}
+
+body header div .btn-edit{
+    margin-top: 100px;
+    background-color: rgba(255, 255, 255, 0.733);
+}
+body header div .btn-edit:first-of-type{
+    margin-left: 0.7rem;
+}
+body .container div .btn-edit{
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.733); 
+}
+body .container div .btn-edit:hover{
+    background-color: #F47B53;
+}
+body .container div .btn-edit:first-of-type{
+    margin-left: 0.7rem;
 }
 body header div .metadata{
     background-color: #f2f2f2b9;
@@ -96,7 +127,17 @@ body nav .snow-icon{
 .container .grid-container-fluid .grid-item h2{
     margin-top: 50%;
 }
-
+.container .grid-container-fluid .grid-item h2:hover{
+    background-color: #fff;
+    color: #2f414a;
+}
+.container .grid-container-fluid .grid-item a{
+    color: inherit;
+}
+.container .grid-container-fluid .grid-item a:hover{
+    color: #2f414a;
+    text-decoration: none;
+}
 .container .grid-container-fluid .grid-item img{
     width: 100%;
     height: 100%;
