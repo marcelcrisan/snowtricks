@@ -24,7 +24,7 @@ class DeleteTrickController extends AbstractController
         $manager->remove($trick);
         $manager->flush();
     
-        return $this->render('front/front.html.twig');
+        return $this->redirectToRoute('home_page');
     }
 
 }

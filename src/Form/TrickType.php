@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TrickType extends AbstractType
 {
@@ -28,7 +29,7 @@ class TrickType extends AbstractType
             ]) 
             ->add('images', CollectionType::class, [
                 'entry_type' => ImageType::class,
-                'entry_options' => ['label' => false],
+                'label' => false,
                 'allow_add' => true,
                 'mapped' => false,
                 'by_reference' => false,
@@ -48,7 +49,7 @@ class TrickType extends AbstractType
             ])
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoType::class,
-                'entry_options' => ['label' => false],
+                'label' => false,
                 'allow_add' => true,
                 'mapped' => false,
                 'by_reference' => false,

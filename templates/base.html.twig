@@ -3,11 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-grid.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-reboot.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        {% endblock %}
     </head>
-    <body>
-        {% block header %}{% endblock %}
-        {% block main %}{% endblock %}
+    <body data-spy="scroll" data-target="#navbar1" data-offset="60">
+        {% block header %}
+
+        {% endblock %}
+        <div class="container-fluid">
+            {% block main %}{% endblock %}
+        </div>
         {% block footer %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
