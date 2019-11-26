@@ -89,4 +89,11 @@
             return false;
         });
     });
+
+    function delete_trick(e)
+    {
+    
+    confirm('Vous êtes sur(e) ?');
+    
+    }
     

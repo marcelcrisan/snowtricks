@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
     {% block header %}
-        {% for trickF in tricks %}
+        {% for trickF in tricks %}    
             {% if loop.first %}
                 {% for imageF in trickF.images %}
                     {% if loop.first %}
-                        <a href="{{ path ('show_trick', {'id': trickF.id}) }}">
-                        <header class="bg-primary" style="background-image:url('{{ asset('assets/images/') ~ imageF.name }}')">
+                        
+                        <header class="bg-primary" style="background-image:url('{{ asset('assets/images/') ~ imageF.name }}')">         
                     {% endif %}
                 {% endfor %}
-            
         
                 <div>
                     <div class="row h-100">
@@ -17,13 +16,15 @@
                             {% if app.user %}
                                 <div class="edit-div">
                                     <a href="{{ path ('trick_edit', {'id': trickF.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
-                                    <a href="{{ path ('trick_delete', {'id': trickF.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="delete_trick(event, trick.id);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
+                                    <a href="{{ path ('trick_delete', {'id': trickF.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
                                 </div>
                                      
                             {% endif %}
         
                             <div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-light">
-                                <h1 class="display-4">{{ trickF.title }}</h1>
+                                <a href="{{ path ('show_trick', {'id': trickF.id}) }}">
+                                    <h1 class="display-4">{{ trickF.title }}</h1>
+                                </a>
             {% endif %}
         {% endfor %}                       
                             </div>
@@ -31,31 +32,34 @@
                     </div>
                 </div>
             </header>
-            </a>
+            
         {% endblock %}
     
 {% block main %}
     <div class="container">
         <div class="grid-container-fluid">
-
-            {% for trick in tricks|slice(1) %}
+            
+            {% for trick in tricks|slice(1) %} 
                 {% for image in trick.images %}
                     {% if loop.first %}
-                        <a href="{{ path ('show_trick', {'id': trick.id}) }}">
+                        
                             <div class="grid-item" style="background-image:url('{{ asset('assets/images/') ~ image.name }}')">
+                            
                     {% endif %}
                 {% endfor %}
+                            
                             {% if app.user %}
                                 <div class="edit-div">
                                     <a href="{{ path ('trick_edit', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
-                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="delete_trick(e, trick.id);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
+                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
                                 </div>
                                      
                             {% endif %}
-                                <h2>{{ trick.title }}</h2>
-                        
+                                <a href="{{ path ('show_trick', {'id': trick.id}) }}">
+                                    <h2>{{ trick.title }}</h2>
+                                </a>
                             </div>
-                        </a>
+                        
             {% endfor %}
         </div>
     </div
