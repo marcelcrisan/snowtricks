@@ -67,6 +67,9 @@ body nav .snow-icon{
     color: #fff;
     margin: 5% 0;
 }
+.container .form-title{
+    margin-top: 100px;
+}
 .container .btn-create-trick{
     width: 30%;
 }
