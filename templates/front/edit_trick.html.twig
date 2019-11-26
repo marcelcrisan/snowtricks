@@ -2,20 +2,39 @@
 
 
 {% block main %}
+    <div class="container">
+        <h1>Modification d'une figure !</h1>
 
-    <h1>Modification d'une figure !</h1>
+        {{ form_start(formTrick) }}
 
-    {{ form_start(formTrick) }}
+            {{ form_row(formTrick.title) }}
+            {{ form_row(formTrick.groupTrick) }}
+            {{ form_row(formTrick.content) }}
 
-        {{ form_row(formTrick.title) }}
-        {# {{ form_row(formTrick.category) }} #}
-        {{ form_row(formTrick.content) }}
-        {{ form_row(formTrick.image) }}
-        {{ form_row(formTrick.video) }}
-        <button type="submit" class="btn btn-success">Modifier la figure</button>
-        
-        {{ form_rest(formTrick) }}
+            <button type="submit" class="btn btn-primary mr-2 copyable">Modifier la figure</button>
+            
+            {{ form_rest(formTrick) }}
 
-     {{ form_end(formTrick) }}
+        {{ form_end(formTrick) }}
+     
+        <div class="container-media">
+            <div class="grid-container">
 
+                {% for image in images %}
+                    <div class="grid-item">
+                        <img src="{{ asset('assets/images/') ~ image.name}}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="grid-container">
+            
+                {% for video in videos %}
+                    <div class="grid-item">
+                        <iframe src="{{ video.name }}" allowfullscreen></iframe>
+                                
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

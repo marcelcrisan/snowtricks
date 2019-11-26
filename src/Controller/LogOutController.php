@@ -13,6 +13,6 @@ class LogOutController extends AbstractController
      */
     public function logout()
     {
-        
+        return $this->render('front/home.html.twig');
     }
 }

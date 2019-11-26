@@ -1,5 +1,5 @@
 security:
-        encoders:
+    encoders:
         App\Entity\User:
             algorithm: auto
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -23,7 +23,7 @@ security:
 
             logout:
                 path: security_logout
-                target: home_page
+                target: /
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

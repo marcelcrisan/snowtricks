@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Trick;
 use App\Entity\User;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,17 +19,16 @@ class ShowTrickController extends AbstractController
     public function trickPage(Trick $trick, Request $request, ObjectManager $manager)
     {
         $comment = new Comment();
-
         $form = $this->createForm(CommentType::class, $comment);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $user = new User();
-
+            
+            
+            
             $comment->setCreatedAt(new \DateTime())
-                    ->setTrick($trick)
-                    ->setAuthor($user);
+                    ->setTrick($trick);
 
             $manager->persist($comment);
             $manager->flush(); 
@@ -37,7 +38,8 @@ class ShowTrickController extends AbstractController
 
         return $this->render('front/show_trick.html.twig', [
             'trick' => $trick,
-            'commentForm' => $form->createView()
+            'commentForm' => $form->createView(),
+            'title' => $trick->getTitle()
         ]);
     }
 }

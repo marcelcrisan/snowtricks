@@ -28,10 +28,12 @@ class EditTrickController extends AbstractController
             $manager->persist($trick);
             $manager->flush();
         
-            return $this->redirectToRoute('trick', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('show_trick', ['id' => $trick->getId()]);
         }
-        return $this->render('trick/edit_trick.html.twig', [
-            'formTrick' => $form->createView()
+        return $this->render('front/edit_trick.html.twig', [
+            'formTrick' => $form->createView(),
+            'images' => $trick->getImages(),
+            'videos' => $trick->getVideos()
         ]);
     }
 }

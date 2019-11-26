@@ -1,28 +1,87 @@
 {% extends 'base.html.twig' %}
+    {% block header %}
+        {% for imageR in trick.images %}
+            {% if loop.first %}
+        
+            <header class="bg-primary" style="background-image:url('{{ asset('assets/images/') ~ imageR.name }}')">
+            {% endif %}
+        {% endfor %}
+                <div>
+                    <div class="row h-100">
+                        <div class="col-12">
+                            {% if app.user %}
+                                <div class="edit-div">
+                                    <a href="{{ path ('trick_edit', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
+                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="delete_trick(event, trick.id);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
+                                </div>
+                                     
+                            {% endif %}
+                            <div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-light">
+                                <h1 class="display-4">{{ title }}</h1>
+                                <div class="metadata"><p>Crée le {{ trick.createdAt | date('d/m/Y') }} à {{ trick.createdAt | date('H:i') }} | Modifié le {{ trick.editAt | date('d/m/Y') }} à {{ trick.editAt | date('H:i') }} dans la catégorie : </p><span>{{ trick.groupTrick.title }}</span></div>
+                                {% if app.user is null %}
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-6 mx-auto">
+                                            <div class="input-group mb-3">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Votre username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-light btn-lg rounded-right" type="button">Sign-up</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        {% endblock %}
+    
 
 {% block main %}
-
+<div class="container">
     <article>
-        <h2>{{ trick.title }}</h2>
-        <div class="metadata">Crée le {{ trick.createdAt | date('d/m/Y') }} à {{ trick.createdAt | date('H:i') }} | Modifié le {{ trick.editAt | date('d/m/Y') }} à {{ trick.editAt | date('H:i') }} dans la catégorie {{ trick.groupTrick.title }}</div>
         <div class="content">
-            {% for image in trick.images %}
-                <img src="{{ asset('assets/images/') ~ image.name}}" alt="">
-            {% endfor %}
-            {% for video in trick.videos %}
-                <video controls>
-                    <source src="{{ video.name }}" type="">
+            <div class="container-media">
+                <div class="grid-container">
 
-                </video>
-            {% endfor %}
+                    {% for image in trick.images|slice(1) %}
+                        <div class="grid-item">
+                            <img src="{{ asset('assets/images/') ~ image.name}}" alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="grid-container">
+                    {% for video in trick.videos %}
+                        <div class="grid-item">
+                            <iframe src="{{ video.name }}" allowfullscreen></iframe>
+                            
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
             <p>
                 {{ trick.content }}
             </p>
-            <a href="{{ path ('trick_edit', {'id': trick.id}) }}" class="btn btn-primary">Modifier la figure</a>
-            <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-primary" onclick="delete_trick(event, trick.id);">Supprimer la figure</a>
+            
         </div>
     </article>
     <section id="commentaires">
+        {% if app.user %}
+            {{ form_start(commentForm) }}
+            {{ form_row(commentForm.author, {value: app.user.username}) }}
+            {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }} 
+
+            <button type="submit" class="btn btn-primary mr-2 copyable">Commenter !</button>
+            {{ form_rest(commentForm) }}  
+            {{ form_end(commentForm) }} 
+        {% else %}
+            <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecté !</h2>
+          
+            <a href="{{ path('security_login') }}" class="btn btn-primary mr-2 copyable">Connexion</a>        
+        {% endif %}
         {% for comment in trick.comments %}
             <div class="comment">
                 <div class="row">
@@ -31,41 +90,32 @@
                     </div>
                     <div class="col">
                         <p>
-                            {{ comment.contenu }}
+                            {{ comment.content }}
                         </p>
                     </div>
                 </div>
             </div>
         {% endfor %}
-        {% if app.user %}
-            {{ form_start(commentForm) }}
-            {{ form_row(commentForm.contenu, {'attr': {'placeholder': "Votre commentaire"}}) }} 
-
-            <button type="submit" class="btn btn-success">Commenter !</button>
-            {{ form_rest(commentForm) }}  
-            {{ form_end(commentForm) }} 
-        {% else %}
-            <h2>Vous ne pouvez pas commenter si vous n'êtes pas connecté !</h2>
-            <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>        
-        {% endif %}
     </section>
 
-
+</div>
 {% endblock %}
 
 {% block customjavascript %}
 {{ parent() }}
-  <script>
-      function delete_trick(e,trick_id)
-      {
-          e.preventDefault();
-          if(confirm('Vous êtes sûr(e) ?')) 
-          {
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function delete_trick(e,trick_id)
+        {
+            e.preventDefault();
+            if(confirm('Vous êtes sûr(e) ?')) 
+            {
               //console.log(id);
               // delete trick
               window.location.href = "/";
-          }
-      }
+            }
+        }
+        
   </script>
 
 {% endblock %}
