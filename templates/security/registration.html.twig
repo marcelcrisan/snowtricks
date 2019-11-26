@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <h1>Inscription sur le site</h1>
+    <div class="container">
+        <h1 class="form-title">Inscription sur le site</h1>
 
-    {{ form_start(formRegistration) }}
+        {{ form_start(formRegistration) }}
 
         {{ form_errors(formRegistration) }}
 
@@ -14,6 +15,6 @@
 
 
         {{ form_rest(formRegistration) }}
-        <button type="submit" class="btn btn-success">Inscription !</button>
-
+        <button type="submit" class="btn btn-primary mr-2 copyable">Inscription !</button>
+    </div>
 {% endblock %}
