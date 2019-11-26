@@ -9,8 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomePageController extends AbstractController
 {
     /**
-     * @Route@Route("/", name="home_page")
-     */
+     * @Route("/", name="homepage_tricks")
+    */
 
     public function home(TrickRepository $repo)
     { 

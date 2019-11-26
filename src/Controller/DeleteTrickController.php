@@ -24,7 +24,7 @@ class DeleteTrickController extends AbstractController
         $manager->remove($trick);
         $manager->flush();
     
-        return $this->redirectToRoute('home_page');
+        return $this->redirectToRoute('homepage_tricks');
     }
 
 }
