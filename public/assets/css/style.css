@@ -103,6 +103,14 @@ body nav .snow-icon{
 .container .form-title{
     margin-top: 100px;
 }
+.container .form-group legend{
+    display: none;
+}
+.container .form-group .col-sm-10{
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+}
 .container .btn-create-trick{
     width: 30%;
 }
