@@ -3,10 +3,12 @@ body{
     margin: 0;
     padding: 0;
 }
+/*
 body .btn:hover{
     background-color: #fff;
     color: #2f414a;
 }
+*/
 /* Header */
 body header{
     width: 100%;
@@ -26,7 +28,7 @@ body header .row{
 body header div h1{
     background: #2f414ab0;
 }
-body header div h1:hover{
+body header div .home-title-trick:hover{
     background: #fff;
 }
 body header div a{
@@ -204,4 +206,12 @@ body nav .snow-icon{
     border-radius: 0.25rem;
     padding: 2%;
     box-sizing: border-box;
+}
+/* Edit trick */
+.edit-trick-media{
+    position: relative;
+}
+body .container .container-media .grid-container .btn-edit-trick-media{
+    position: absolute;
+    top: 0;
 }
