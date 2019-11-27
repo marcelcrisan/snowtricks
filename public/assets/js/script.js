@@ -130,7 +130,7 @@
 
             var newFormImage = prototypeImage;
 
-            newFormImage = newFormImage.replace(/__name__label__/g, indexImage);
+            newFormImage = newFormImage.replace(/__name__/g, indexImage);
 
             $collectionHolderImage.data('index', indexImage +1);
 
@@ -185,7 +185,7 @@
 
             var newFormVideo = prototypeVideo;
 
-            newFormVideo = newFormVideo.replace(/__name__label__/g, indexVideo);
+            newFormVideo = newFormVideo.replace(/__name__/g, indexVideo);
 
             $collectionHolderVideo.data('index', indexVideo +1);
 
