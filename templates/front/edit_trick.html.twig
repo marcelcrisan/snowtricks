@@ -10,7 +10,8 @@
             {{ form_row(formTrick.title) }}
             {{ form_row(formTrick.groupTrick) }}
             {{ form_row(formTrick.content) }}
-
+            {{ form_row(formTrick.images, {'attr': {'data-prototype': "{{ form_widget(formTrick.images.vars.prototype) | e ('html_attr') }}", 'class' : "images-trick" }})}}
+            {{ form_row(formTrick.videos, {'attr': {'data-prototype': "{{ form_widget(formTrick.videos.vars.prototype) | e ('html_attr') }}", 'class' : "videos-trick" }})}}
             <button type="submit" class="btn btn-primary mr-2 copyable">Modifier la figure</button>
             
             {{ form_rest(formTrick) }}
@@ -21,7 +22,8 @@
             <div class="grid-container">
 
                 {% for image in images %}
-                    <div class="grid-item">
+                    <div class="grid-item edit-trick-media">
+                        <a href="{{ path ('image_delete', {'id': image.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable btn-edit-trick-media" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer l'image"></a>
                         <img src="{{ asset('assets/images/') ~ image.name}}" alt="">
                     </div>
                 {% endfor %}
@@ -29,7 +31,8 @@
             <div class="grid-container">
             
                 {% for video in videos %}
-                    <div class="grid-item">
+                    <div class="grid-item edit-trick-media">
+                        <a href="{{ path ('video_delete', {'id': video.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable btn-edit-trick-media" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer le video"></a>
                         <iframe src="{{ video.name }}" allowfullscreen></iframe>
                                 
                     </div>
