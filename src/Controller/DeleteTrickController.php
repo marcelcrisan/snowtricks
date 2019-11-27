@@ -6,7 +6,7 @@ use App\Entity\Trick;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
-
+use Symfony\Component\Filesystem\Filesystem;
 
 class DeleteTrickController extends AbstractController
 {  
@@ -19,7 +19,15 @@ class DeleteTrickController extends AbstractController
         if (!$trick) {
             throw $this->createNotFoundException('Cette figure n\'existe pas !');
         }
+        $images = $trick->getImages();
+        foreach ($images as $image) {
+            $filesystem = new Filesystem();
+
+            $fileImage = $image->getName();
     
+            $filesystem->remove(($this->getParameter('upload_directory')). '/'. $fileImage);
+        }
+
         $manager->remove($trick);
         $manager->flush();
     
