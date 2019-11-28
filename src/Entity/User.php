@@ -5,10 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ *
  */
 class User implements UserInterface
 {
@@ -21,26 +21,34 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     * @Assert\NotBlank
+     * @Assert\Email(message = "Votre email '{{ value }}' n'est pas valide.")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     * @Assert\NotBlank
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     * @Assert\Length(min=8)
+     * @Assert\IdenticalTo(message="",propertyPath="confirm_password")
      */
     private $password;
 
     /**
-     * 
+     * @Assert\IdenticalTo(message="Vous n'avez pas tapé le mème mot de passe", propertyPath="password")
      */
     public $confirm_password;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+
 
     public function getId(): ?int
     {
@@ -99,4 +107,13 @@ class User implements UserInterface
         return['ROLE_USER'];
     }
 
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+ 
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
+    }
 }
