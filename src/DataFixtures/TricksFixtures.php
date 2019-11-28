@@ -81,10 +81,8 @@ class TricksFixtures extends Fixture
                     /** @var UploadedFile $file */
                     $dirUpload = $this->uploadsPath;
                     $dirFixtures = $this->fixturesFilePath;
-
-                    //$filesImages = new DirectoryIterator($dirFixtures);
                     
-                  $fileImage = $faker->file($dirFixtures, $dirUpload, false);
+                    $fileImage = $faker->file($dirFixtures, $dirUpload, false);
                   
                 
                     $image = new Image();
