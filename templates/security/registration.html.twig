@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="form-title">Inscription sur le site</h1>
 
-        {{ form_start(formRegistration) }}
+        {{ form_start(formRegistration, {'attr': {'novalidate': 'novalidate'}})}}
 
         {{ form_errors(formRegistration) }}
 

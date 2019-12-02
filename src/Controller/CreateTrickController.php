@@ -8,7 +8,7 @@ use App\Entity\Video;
 use App\Form\TrickType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -19,7 +19,7 @@ class CreateTrickController extends AbstractController
     /**
      * @Route("/trick/new", name="trick_create")
      */
-    public function create(Request $request, ObjectManager $manager)
+    public function create(Request $request, EntityManagerInterface $manager)
     { 
         $trick = new Trick();
         
