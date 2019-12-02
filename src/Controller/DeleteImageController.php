@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Image;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,7 +14,7 @@ class DeleteImageController extends AbstractController
     /**
      * @Route("/image/{id}/delete", name="image_delete")
     */
-    public function deleteImage (Image $image, ObjectManager $manager, Request $request)
+    public function deleteImage (Image $image, EntityManagerInterface $manager, Request $request)
     {
         if (!$image) {
             throw $this->createNotFoundException('Cette image n\'existe pas !');

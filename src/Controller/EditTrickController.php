@@ -8,7 +8,7 @@ use App\Entity\Video;
 use App\Form\TrickType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -17,7 +17,7 @@ class EditTrickController extends AbstractController
     /**
      * @Route("/trick/{id}/edit", name="trick_edit")
      */
-    public function editTrick(Trick $trick,Request $request, ObjectManager $manager)
+    public function editTrick(Trick $trick,Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(TrickType::class, $trick);
 

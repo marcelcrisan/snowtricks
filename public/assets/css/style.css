@@ -1,7 +1,116 @@
 /* Reset */
 body{
     margin: 0;
-    padding: 0;
+    padding: 0;   
+    font-family: "Helvetica Neue", Arial, sans-serif, Helvetica;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+}
+.btn-outline-secondary {
+    color: #F47B53;
+    background-color: transparent;
+    background-image: none;
+    border-color: #F47B53;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #2F414A;
+    border-color: #2F414A;
+}
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.was-validated .form-control:invalid {
+    border-color: #f2460d;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-sizing: border-box;
+}
+.custom-file-input{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-sizing: border-box;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+select {
+    text-rendering: auto;
+    color: black;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: menulist;
+    box-sizing: border-box;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    background-color: white;
+    cursor: default;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    border-radius: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(169, 169, 169);
+    border-image: initial;
 }
 /*
 body .btn:hover{
@@ -20,30 +129,47 @@ body header{
 body header div .col-12{
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
 }
 body header .row{
-    margin-left: 0;
-    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
 body header div h1{
+    width: 100%;
+    display: block;
     background: #2f414ab0;
+    color: #fff;
 }
 body header div .home-title-trick:hover{
     background: #fff;
+    color: #2f414a;
 }
 body header div a{
     color: inherit;
+    width: 100%;
 }
+body header .edit-div a{
+    display: inline-block;
+    width: 24px;
+    color: #F47B53;
+    background-color: transparent;
+    background-image: none;
+}
+body header .edit-div a:hover{
+    background-color: #F47B53;
+}
+
 body header div a:hover{
     color: #2f414a;
-    text-decoration: none;
 }
 body header div .btn{
     background-color: #2f414a;
 }
 
 body header div .btn-edit{
-    margin-top: 100px;
+    margin-top: 15px;
     background-color: rgba(255, 255, 255, 0.733);
 }
 body header div .btn-edit:first-of-type{
@@ -81,11 +207,68 @@ body header div .metadata span{
     border-radius: 0 0 0.25rem 0.25rem;
 }
 /* Navbar */
-body nav .snow-icon{
+.logo{
     width: 50px;
+    position: fixed;
+    top: 0.5%;
+    left: 1%;
+    z-index: 6;
 }
-/* Container */
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #2f414a;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+}
+  
+/* Style the links inside the navigation bar */
+.topnav a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
 
+  
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+  
+/* Add an active class to highlight the current page */
+.topnav a.active-nav {
+    position: fixed;
+    left: 7%;
+}
+  
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+    display: none;
+}
+
+/* Container */
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+.text-center {
+    text-align: center;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
 .container h2{
     width: 100%;
     text-align: center;
@@ -222,4 +405,75 @@ body nav .snow-icon{
 body .container .container-media .grid-container .btn-edit-trick-media{
     position: absolute;
     top: 0;
+}
+
+@media screen and (max-width: 780px) {
+    .container{
+        width: 95%;
+    }
+    .topnav a {
+        font-size: initial;
+        padding: 7px 8px;
+        box-sizing: border-box;
+    }
+    h1 {
+        font-size: initial;
+        line-height: initial;
+        padding: 7px 8px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        font-size: initial;
+        line-height: initial;
+        padding: 7px 8px;
+        box-sizing: border-box;
+    }
+    .comment .row .col-3{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .comment .row .col{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    body header div .metadata{
+        width: 62%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a {display: none;}
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .topnav a.active-nav {
+        position: relative;
+        left: inherit;
+    }
+
+    .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive{
+        display: block;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+    .grid-container{
+        max-width: 100%;
+        width: 100%;
+        margin: 20px 0;
+    }
+    body header div .metadata{
+        width: 82%;
+    }
 }

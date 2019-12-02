@@ -6,7 +6,7 @@ use App\Entity\Trick;
 use App\Entity\User;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,8 +16,10 @@ class ShowTrickController extends AbstractController
     /**
      * @Route("/trick/{id}", name="show_trick")
      */
-    public function trickPage(Trick $trick, Request $request, ObjectManager $manager)
+    public function trickPage(Trick $trick, Request $request, EntityManagerInterface $manager)
     {
+        $id = $trick->getId();
+
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
 
@@ -33,11 +35,13 @@ class ShowTrickController extends AbstractController
             $manager->persist($comment);
             $manager->flush(); 
             
-            return $this->redirectToRoute('show_trick', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('show_trick', ['id' => $id]);
         }
+        $comments = $manager->getRepository(Comment::class)->findBy(['trick' => $id], ['id' => 'DESC']);
 
         return $this->render('front/show_trick.html.twig', [
             'trick' => $trick,
+            'comments' => $comments,
             'commentForm' => $form->createView(),
             'title' => $trick->getTitle()
         ]);
