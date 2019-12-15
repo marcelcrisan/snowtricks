@@ -8,31 +8,47 @@
         }
       }
 
-    function delete_trick(e)
+    function deleteTrick(e)
     {
     
-    confirm('Vous êtes sur(e) ?');
+    confirm("Vous êtes sur(e) ?");
     
     }
 
     var $collectionHolderImage;
 
-        var $addImageButton = $('<button type="button" class="add_image_link btn-create-trick btn btn-primary mr-2 copyable">Ajouter une image</button>');
-        var $newLinkLiImage = $('<div></div>').append($addImageButton);
+        var $addImageButton = $("<button type=\"button\" class=\"add_image_link btn-create-trick btn btn-primary mr-2 copyable\">Ajouter une image</button>");
+        var $newLinkLiImage = $("<div></div>").append($addImageButton);
+
+        function addImageButton($collectionHolderImage, $newLinkLiImage) {
+            var prototypeImage = $collectionHolderImage.data("prototype");
+
+            var indexImage = $collectionHolderImage.data("index");
+
+            var newFormImage = prototypeImage;
+
+            newFormImage = newFormImage.replace(/__name__/g, indexImage);
+
+            $collectionHolderImage.data("index", indexImage +1);
+
+            var $newFormLiImage = $("<div></div>").append(newFormImage);
+            $newLinkLiImage.before($newFormLiImage);
+            addImageFormDeleteLink($newFormLiImage);
+        }
 
         jQuery(document).ready(function() {
-            $collectionHolderImage = $('div.images-trick');
+            $collectionHolderImage = $("div.images-trick");
                // delete link image
             
-            $collectionHolderImage.find('div').each(function() {
+            $collectionHolderImage.find("div").each(function() {
                 addImageFormDeleteLink($(this));
             });
 
             $collectionHolderImage.append($newLinkLiImage);
 
-            $collectionHolderImage.data('index', $collectionHolderImage.find(':input').length);
+            $collectionHolderImage.data("index", $collectionHolderImage.find(":input").length);
 
-            $addImageButton.on('click', function(e) {
+            $addImageButton.on("click", function(e) {
                 addImageButton($collectionHolderImage, $newLinkLiImage);
             });
             
@@ -41,53 +57,55 @@
 
         });
 
-        function addImageButton($collectionHolderImage, $newLinkLiImage) {
-            var prototypeImage = $collectionHolderImage.data('prototype');
-
-            var indexImage = $collectionHolderImage.data('index');
-
-            var newFormImage = prototypeImage;
-
-            newFormImage = newFormImage.replace(/__name__/g, indexImage);
-
-            $collectionHolderImage.data('index', indexImage +1);
-
-            var $newFormLiImage = $('<div></div>').append(newFormImage);
-            $newLinkLiImage.before($newFormLiImage);
-            addImageFormDeleteLink($newFormLiImage);
-        }
+    
 
         function addImageForm() {
             
         }
 
         function addImageFormDeleteLink($imageFormLi) {
-            var $removeImageFormButton = $('<button type="button" class="btn btn-delete-trick btn-outline-secondary mr-2 copyable">Delete this Image</button>');
+            var $removeImageFormButton = $("<button type=\"button\" class=\"btn btn-delete-trick btn-outline-secondary mr-2 copyable\">Delete this Image</button>");
             $imageFormLi.append($removeImageFormButton);
 
-            $removeImageFormButton.on('click', function(e) {
+            $removeImageFormButton.on("click", function(e) {
                 $imageFormLi.remove();
             });
         }
 
         var $collectionHolderVideo;
 
-        var $addVideoButton = $('<button type="button" class="add_video_link btn-create-trick btn btn-primary mr-2 copyable">Ajouter une Video</button>');
-        var $newLinkLiVideo = $('<div></div>').append($addVideoButton);
+        var $addVideoButton = $("<button type=\"button\" class=\"add_video_link btn-create-trick btn btn-primary mr-2 copyable\">Ajouter une Video</button>");
+        var $newLinkLiVideo = $("<div></div>").append($addVideoButton);
+
+        function addVideoButton($collectionHolderVideo, $newLinkLiVideo) {
+            var prototypeVideo = $collectionHolderVideo.data("prototype");
+
+            var indexVideo = $collectionHolderVideo.data("index");
+
+            var newFormVideo = prototypeVideo;
+
+            newFormVideo = newFormVideo.replace(/__name__/g, indexVideo);
+
+            $collectionHolderVideo.data("index", indexVideo +1);
+
+            var $newFormLiVideo = $("<div></div>").append(newFormVideo);
+            $newLinkLiVideo.before($newFormLiVideo);
+            addVideoFormDeleteLink($newFormLiVideo);
+        }
 
         jQuery(document).ready(function() {
-            $collectionHolderVideo = $('div.videos-trick');
+            $collectionHolderVideo = $("div.videos-trick");
                // delete link Video
             
-            $collectionHolderVideo.find('div').each(function() {
+            $collectionHolderVideo.find("div").each(function() {
                 addVideoFormDeleteLink($(this));
             });
 
             $collectionHolderVideo.append($newLinkLiVideo);
 
-            $collectionHolderVideo.data('index', $collectionHolderVideo.find(':input').length);
+            $collectionHolderVideo.data("index", $collectionHolderVideo.find(":input").length);
 
-            $addVideoButton.on('click', function(e) {
+            $addVideoButton.on("click", function(e) {
                 addVideoButton($collectionHolderVideo, $newLinkLiVideo);
             });
             
@@ -96,31 +114,17 @@
 
         });
 
-        function addVideoButton($collectionHolderVideo, $newLinkLiVideo) {
-            var prototypeVideo = $collectionHolderVideo.data('prototype');
 
-            var indexVideo = $collectionHolderVideo.data('index');
-
-            var newFormVideo = prototypeVideo;
-
-            newFormVideo = newFormVideo.replace(/__name__/g, indexVideo);
-
-            $collectionHolderVideo.data('index', indexVideo +1);
-
-            var $newFormLiVideo = $('<div></div>').append(newFormVideo);
-            $newLinkLiVideo.before($newFormLiVideo);
-            addVideoFormDeleteLink($newFormLiVideo);
-        }
 
         function addVideoForm() {
             
         }
 
         function addVideoFormDeleteLink($VideoFormLi) {
-            var $removeVideoFormButton = $('<button type="button" class="btn btn-delete-trick btn-outline-secondary mr-2 copyable">Delete this Video</button>');
+            var $removeVideoFormButton = $("<button type=\"button\" class=\"btn btn-delete-trick btn-outline-secondary mr-2 copyable\">Delete this Video</button>");
             $VideoFormLi.append($removeVideoFormButton);
 
-            $removeVideoFormButton.on('click', function(e) {
+            $removeVideoFormButton.on("click", function(e) {
                 $VideoFormLi.remove();
             });
         }
