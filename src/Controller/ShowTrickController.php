@@ -14,11 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShowTrickController extends AbstractController
 {
     /**
-     * @Route("/trick/{id}", name="show_trick")
+     * @Route("/trick/{id}/{slug}", name="show_trick")
      */
     public function trickPage(Trick $trick, Request $request, EntityManagerInterface $manager)
     {
         $id = $trick->getId();
+        $slug = $trick->getSlug();
 
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -35,7 +36,7 @@ class ShowTrickController extends AbstractController
             $manager->persist($comment);
             $manager->flush(); 
             
-            return $this->redirectToRoute('show_trick', ['id' => $id]);
+            return $this->redirectToRoute('show_trick', ['id' => $id, 'slug' => $slug]);
         }
         $comments = $manager->getRepository(Comment::class)->findBy(['trick' => $id], ['id' => 'DESC']);
 

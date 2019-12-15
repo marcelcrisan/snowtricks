@@ -11,8 +11,8 @@
                         <div class="col-12">
                             {% if app.user %}
                                 <div class="edit-div">
-                                    <a href="{{ path ('trick_edit', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
-                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
+                                    <a href="{{ path ('trick_edit', {'id': trick.id, 'slug': trick.slug}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
+                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
                                 </div>
                                      
                             {% endif %}

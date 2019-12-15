@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class EditTrickController extends AbstractController
 {   
     /**
-     * @Route("/trick/{id}/edit", name="trick_edit")
+     * @Route("/trick/{id}/edit/{slug}", name="trick_edit")
      */
     public function editTrick(Trick $trick,Request $request, EntityManagerInterface $manager)
     {
@@ -58,7 +58,7 @@ class EditTrickController extends AbstractController
             $manager->persist($trick);
             $manager->flush();
         
-            return $this->redirectToRoute('show_trick', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('show_trick', ['id' => $trick->getId(), 'slug' => $trick->getSlug()]);
         }
         return $this->render('front/edit_trick.html.twig', [
             'formTrick' => $form->createView(),

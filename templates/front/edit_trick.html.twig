@@ -23,7 +23,7 @@
 
                 {% for image in images %}
                     <div class="grid-item edit-trick-media">
-                        <a href="{{ path ('image_delete', {'id': image.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable btn-edit-trick-media" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer l'image"></a>
+                        <a href="{{ path ('image_delete', {'id': image.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable btn-edit-trick-media" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer l'image"></a>
                         <img src="{{ asset('assets/images/') ~ image.name}}" alt="">
                     </div>
                 {% endfor %}
@@ -32,7 +32,7 @@
             
                 {% for video in videos %}
                     <div class="grid-item edit-trick-media">
-                        <a href="{{ path ('video_delete', {'id': video.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable btn-edit-trick-media" onclick="delete_trick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer le video"></a>
+                        <a href="{{ path ('video_delete', {'id': video.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable btn-edit-trick-media" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer le video"></a>
                         <iframe src="{{ video.name }}" allowfullscreen></iframe>
                                 
                     </div>
