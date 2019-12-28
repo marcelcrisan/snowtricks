@@ -1,5 +1,6 @@
 Snow Tricks
 Codacy Badge
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e288ef4977104b169412397650d3a600)](https://www.codacy.com/manual/marcelcrisan/snowtricks?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marcelcrisan/snowtricks&amp;utm_campaign=Badge_Grade)
 
 
 Community website about snowboard tricks
