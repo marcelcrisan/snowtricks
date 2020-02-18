@@ -17,7 +17,7 @@
         {% block nav %}
              <div class="logo">
                 <a href="/">
-                    <img class="snow-icon" src="{{ asset('assets/icons/snowtricks.png') }}" alt="SnowTricks page d'accueil">
+                    <img class="snow-icon" src="{{ asset('assets/icons/snowtricks.png') }}" alt="SnowTricks page d'accueil" />
                 </a>
             </div>
             <nav class="topnav" id="myTopnav">
@@ -29,9 +29,6 @@
                     <a href="{{ path('security_login') }}" class="btn-nav">Identifiez-vous</a>
                     <a href="{{ path('security_registration') }}" class="btn-nav">Créez votre compte</a>
                 {% endif %}
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
             </nav>
         {% endblock %}
         {% block header %}
@@ -40,7 +37,24 @@
         <div class="container-fluid">
             {% block main %}{% endblock %}
         </div>
-        {% block footer %}{% endblock %}
+        {% block footer %}
+            <footer>
+                <a class="footer-icon-link" href="{{ path('homepage_tricks') }}" class="btn-nav active-nav">
+                    <img class="footer-icon" src="{{ asset('assets/icons/home.png') }}" alt="SnowTricks page d'accueil" />
+                </a>
+                {% if app.user %}
+                    <a href="{{ path('trick_create') }}" class="btn-nav">Ajouter une figure</a>
+                    <a class="footer-icon-link" href="{{ path('security_logout') }}" class="btn-nav">
+                        <img class="footer-icon" src="{{ asset('assets/icons/logout.png') }}" alt="Déconnexion" />  
+                    </a>
+                {% else %}
+                    <a href="{{ path('security_registration') }}" class="btn-nav">Créez votre compte</a>
+                    <a class="footer-icon-link" href="{{ path('security_login') }}" class="btn-nav">
+                        <img class="footer-icon" src="{{ asset('assets/icons/login.png') }}" alt="Identifiez-vous" />
+                    </a>
+                {% endif %}
+            </footer>
+        {% endblock %}
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

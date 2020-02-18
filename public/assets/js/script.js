@@ -1,12 +1,3 @@
-	/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-          x.className += " responsive";
-        } else {
-          x.className = "topnav";
-        }
-      }
 
     function deleteTrick(e)
     {
@@ -17,11 +8,11 @@
 
     var $collectionHolderImage;
 
-        var $addImageButton = $("<button type=\"button\" class=\"add_image_link btn-create-trick btn btn-primary mr-2 copyable\">Ajouter une image</button>");
+        var $addImageButton = $("<button type=\"button\" class=\"add_image_link btn-create-trick btn btn-primary mr-2 copyable\">Ajouter une Image</button>");
         var $newLinkLiImage = $("<div></div>").append($addImageButton);
 
         function addImageFormDeleteLink($imageFormLi) {
-            var $removeImageFormButton = $("<button type=\"button\" class=\"btn btn-delete-trick btn-outline-secondary mr-2 copyable\">Delete this Image</button>");
+            var $removeImageFormButton = $("<button type=\"button\" class=\"btn btn-delete-trick btn-outline-secondary mr-2 copyable\">Supprimer cette Image</button>");
             $imageFormLi.append($removeImageFormButton);
 
             $removeImageFormButton.on("click", function(e) {
@@ -72,7 +63,7 @@
         var $newLinkLiVideo = $("<div></div>").append($addVideoButton);
 
         function addVideoFormDeleteLink($VideoFormLi) {
-            var $removeVideoFormButton = $("<button type=\"button\" class=\"btn btn-delete-trick btn-outline-secondary mr-2 copyable\">Delete this Video</button>");
+            var $removeVideoFormButton = $("<button type=\"button\" class=\"btn btn-delete-trick btn-outline-secondary mr-2 copyable\">Supprimer cette Vidéo</button>");
             $VideoFormLi.append($removeVideoFormButton);
 
             $removeVideoFormButton.on("click", function(e) {
@@ -117,5 +108,38 @@
             
         }
 
+    var element = document.getElementById("show-medias-btn");
+    var hiddenelement = document.getElementById("hidden-medias-btn");
+    var blockmedias = document.getElementById("trick-medias");
+    var trigger = document.getElementById("js-toggle-medias"); 
 
+    trigger.addEventListener("click", function(e) {
+        e.preventDefault();
+        element.classList.toggle("show-active");
+        hiddenelement.classList.toggle("hidden-active");
+        blockmedias.classList.toggle("block-medias-active");
+    });
+
+    var element1 = document.getElementById("more-comment-btn");
+    var hiddenelement1 = document.getElementById("hidden-comment-btn");
+    var blockcomment = document.getElementById("trick-comments");
+    var triggercomment = document.getElementById("js-toggle-comment"); 
+
+    triggercomment.addEventListener("click", function(event) {
+        event.preventDefault();
+        element1.classList.toggle("more-comment-hide");
+        hiddenelement1.classList.toggle("hide-comment-active");
+        blockcomment.classList.toggle("block-comments-active");
+    });
+
+    function scrollWin(alignToTop) {
+
+        var tricksContainer = document.getElementById ("tricks-container");
+            tricksContainer.scrollIntoView (alignToTop);
+      }
     
+      function scrollHead(alignToTop) {
+        var headTricks = document.getElementById ("header-tricks");
+
+            headTricks.scrollIntoView (alignToTop);
+      }  

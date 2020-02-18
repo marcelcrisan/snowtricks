@@ -152,7 +152,7 @@
         "version": "2.2.3"
     },
     "php": {
-        "version": "7.3"
+        "version": "7.2"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -202,9 +202,6 @@
     "symfony/cache-contracts": {
         "version": "v1.1.7"
     },
-    "symfony/class-loader": {
-        "version": "v3.4.35"
-    },
     "symfony/config": {
         "version": "v4.3.7"
     },
@@ -250,6 +247,9 @@
     },
     "symfony/dotenv": {
         "version": "v4.3.7"
+    },
+    "symfony/error-handler": {
+        "version": "v4.4.4"
     },
     "symfony/event-dispatcher": {
         "version": "v4.3.7"

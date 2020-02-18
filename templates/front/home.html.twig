@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
     {% block header %}
+        <din id="header-tricks">
+        </div>
         {% for trickF in tricks %}    
             {% if loop.first %}
                 {% for imageF in trickF.images %}
                     {% if loop.first %}
                         
-                        <header class="bg-primary" style="background-image:url('{{ asset('assets/images/') ~ imageF.name }}')">         
+                        <header class="bg-primary header-tricks" style="background-image:url('{{ asset('assets/images/') ~ imageF.name }}')">         
                     {% endif %}
                 {% endfor %}
         
@@ -15,8 +17,8 @@
                         <div class="col-12">
                             {% if app.user %}
                                 <div class="edit-div">
-                                    <a href="{{ path ('trick_edit', {'id': trickF.id, 'slug': trickF.slug}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
-                                    <a href="{{ path ('trick_delete', {'id': trickF.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
+                                    <a href="{{ path ('trick_edit', {'id': trickF.id, 'slug': trickF.slug}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure" /></a>
+                                    <a href="{{ path ('trick_delete', {'id': trickF.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure" /></a>
                                 </div>
                                      
                             {% endif %} 
@@ -28,11 +30,18 @@
             {% endif %}
         {% endfor %}                       
                             </div>
+                            <div class="scroll-btn-div">
+                                <button id="scroll-window" class="btn btn-outline-secondary mr-2 copyable show-tricks-btn">
+                                    <span id="show-tricks-btn" class="show-tricks" onclick="scrollWin(true)">&#8681;</span>
+                                </button>
+                            </div> 
                         </div>
                     </div>
                 </div>
+   
             </header>
-            
+            <div id="tricks-container">
+            </div>
         {% endblock %}
     
 {% block main %}
@@ -50,8 +59,8 @@
                             
                             {% if app.user %}
                                 <div class="edit-div">
-                                    <a href="{{ path ('trick_edit', {'id': trick.id, 'slug': trick.slug}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure"></a>
-                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure"></a>
+                                    <a href="{{ path ('trick_edit', {'id': trick.id, 'slug': trick.slug}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable"><img src="{{ asset('assets/icons/edit.png') }}" alt="Modifier la figure" /></a>
+                                    <a href="{{ path ('trick_delete', {'id': trick.id}) }}" class="btn btn-edit btn-outline-secondary mr-2 copyable" onclick="deleteTrick(event);"><img src="{{ asset('assets/icons/delete-button.png') }}" alt="Supprimer la figure" /></a>
                                 </div>
                                      
                             {% endif %}
@@ -62,13 +71,20 @@
                         
             {% endfor %}
         </div>
-    </div
+    </div>
 
 
 
 {% endblock %}
-{% block customjavascript %}
-{{ parent() }}
+{% block footer %}
+    <div class="scroll-btn-div">
+        <button id="scroll-window" class="btn btn-outline-secondary mr-2 copyable show-tricks-btn">
+            <span id="hidden-tricks-btn" class="hide-tricks" onclick="scrollHead(true)">&#8679;</span>
+        </button>
+    </div>
+    {{ parent() }}    
+{% endblock %}
+{% block javascripts %}
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -77,12 +93,13 @@
             e.preventDefault();
             if(confirm('Vous êtes sûr(e) ?')) 
             {
-              //console.log(id);
-              // delete trick
-              window.location.href = "/";
+            //console.log(id);
+            // delete trick
+            window.location.href = "/";
             }
         }
         
   </script>
+  {{ parent() }}
 
 {% endblock %}

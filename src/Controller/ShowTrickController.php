@@ -38,7 +38,7 @@ class ShowTrickController extends AbstractController
             
             return $this->redirectToRoute('show_trick', ['id' => $id, 'slug' => $slug]);
         }
-        $comments = $manager->getRepository(Comment::class)->findBy(['trick' => $id], ['id' => 'DESC']);
+        $comments = $manager->getRepository(Comment::class)->findBy(['trick' => $id], ['createdAt' => 'DESC']);
 
         return $this->render('front/show_trick.html.twig', [
             'trick' => $trick,
